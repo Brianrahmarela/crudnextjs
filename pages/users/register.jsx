@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Card } from "react-bootstrap";
 import { useState } from "react";
 import axios from 'axios'
 import {useRouter} from 'next/router'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Register() {
   const router = useRouter()
@@ -43,10 +44,10 @@ function Register() {
       console.log("res get cekregis", res);
 
       let sameUsername = res.data.filter(
-        (item, index) => item.username === dataUser.username
+        item => item.username === dataUser.username
       );
       let samePassword = res.data.filter(
-        (item, index) => item.password === dataUser.password
+        item => item.password === dataUser.password
       );
       console.log('sameUsername', sameUsername)
       console.log('samePassword', samePassword)
@@ -55,7 +56,7 @@ function Register() {
         setErrorDuplicate('username sudah ada')
         if(samePassword.length !== 0){
           console.log('password sama')
-          setErrorDuplicate('password sama')
+          setErrorDuplicate('username and password exist')
         }
       } else{
         console.log('tdk sama')
@@ -120,7 +121,7 @@ function Register() {
           </Form.Group>
 
           <Button variant="primary" type="submit" onClick={checkRegis}>
-            login
+            Register
           </Button>
         </Form>
       </Row>

@@ -4,18 +4,27 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { Form, Button, Container, Row, Card } from "react-bootstrap";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-//komponen
-import Register from "./users/register";
 import { useRouter } from "next/router";
-
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+//komponen
+import Increment from "../components/Increment"
+import Decrement from "../components/Decrement"
 function Home(props) {
-  const router = useRouter();
-
   console.log("props home", props);
-  // let dataLocalStorageIsLogin = localStorage.getItem("is Login");
+  const router = useRouter();
+    const checkIsLogin = () => {
+    let isLogin = localStorage.getItem("is Login");
+    console.log('isLogin', isLogin)
+    isLogin ? router.push("/") : router.push("/users/register");
+  };
 
-  
+  useEffect(() => {
+    checkIsLogin();
+  }, []);
+
+  const count = useSelector((state) => state.counter.value)
+
   return (
     <>
       <header>
@@ -38,31 +47,29 @@ function Home(props) {
         </ul>
       </header>
       <h1>Hal Home</h1>
-      {/* {dataLocalStorageIsLogin 
-        ? router.push("/")
-        :  router.push("/users/register")} */}
-      {/* <Register/> */}
-      {/* <h1>Welcome Brian Rahmarela!</h1> */}
+      <Increment/>
+      <Decrement/>
+      {count}
     </>
   );
 }
 
 export default Home;
 
-export async function getStaticProps(context) {
-  console.log("context", context);
-  // console.log('dataUser getStaic', dataUser)
-  // const response = await axios.post('/user', dataUser)
-  //   .then(function (response) {
-  //     console.log(response);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
+// export async function getStaticProps(context) {
+//   console.log("context", context);
+//   // console.log('dataUser getStaic', dataUser)
+//   // const response = await axios.post('/user', dataUser)
+//   //   .then(function (response) {
+//   //     console.log(response);
+//   //   })
+//   //   .catch(function (error) {
+//   //     console.log(error);
+//   //   });
 
-  return {
-    props: { initialData: "response.data" },
-    // props: { initialData: response.data },
-    // revalidate: 1,
-  };
-}
+//   return {
+//     props: { initialData: "response.data" },
+//     // props: { initialData: response.data },
+//     // revalidate: 1,
+//   };
+// }

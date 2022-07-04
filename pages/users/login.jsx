@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Card } from "react-bootstrap";
 import { useState } from "react";
 import axios from 'axios'
 import {useRouter} from 'next/router'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Login() {
   const router = useRouter()
@@ -55,8 +56,8 @@ function Login() {
         setErrorDuplicate('')
       } 
       if(samePassword.length !== 0){
-        console.log('Username dan password salah')
-        setErrorDuplicate('Username dan password salah')
+        console.log('Username dan password benar')
+        setErrorDuplicate('')
         handleSubmit()
       }
       else{
