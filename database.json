@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "noid": 1,
+      "username": "satu",
+      "password": "1",
+      "id": 1
+    }
+  ],
+  "transaction": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ]
+}
